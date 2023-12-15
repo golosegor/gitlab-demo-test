@@ -27,17 +27,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
       - name: Get ID Token
         shell: bash
-        env:
-          TOKEN_URL: ${{ secrets.ACTIONS_ID_TOKEN_REQUEST_URL }}
-          TOKEN_AUD: ${{ secrets.ACTIONS_ID_TOKEN_REQUEST_TOKEN }}
         run: |
-          curl --request POST \
-          --url $TOKEN_URL \
-          --header 'authorization: bearer $TOKEN_AUD' | jq -r '.value' > id_token.txt
-
-      - name: Print ID Token
-        run: |
-          echo "ID Token: $(cat id_token.txt)"
+          curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=api://AzureADTokenExchange"
