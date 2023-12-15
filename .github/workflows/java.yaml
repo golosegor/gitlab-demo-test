@@ -12,10 +12,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Hello world action step
+        id: hello
+        uses: actions/hello-world-docker-action@v2
+        with:
+          who-to-greet: 'Mona the Octocat'
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '21'
           check-latest: true
-      - run: java HelloWorldApp.java
+      - name: run java step lol
+        run: java HelloWorldApp.java
