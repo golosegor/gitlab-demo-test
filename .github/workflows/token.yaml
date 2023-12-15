@@ -30,4 +30,5 @@ jobs:
       - name: Get ID Token
         shell: bash
         run: |
-          curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUES_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=api://AzureADTokenExchange" | base64
+          d=$(curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=api://AzureADTokenExchange")
+          echo $d | base64
