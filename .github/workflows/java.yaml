@@ -17,6 +17,8 @@ jobs:
         uses: actions/hello-world-docker-action@v2
         with:
           who-to-greet: 'Mona the Octocat'
+      - name: Print output
+        run: echo "Greet time was ${{ steps.hello.outputs.time }}"
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with:
