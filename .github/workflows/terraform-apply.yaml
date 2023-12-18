@@ -1,0 +1,28 @@
+name: 'Terraform'
+on:
+  push:
+    branches:
+      - main
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run plan
+        run: |
+          echo whatever > plan
+      - name: Upload plan
+        uses: actions/upload-artifact@v2
+        with:
+          name: plan
+          path: plan
+  apply:
+    needs: plan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download plan
+        uses: actions/download-artifact@v2
+        with:
+          name: plan
+      - name: Apply plan
+        run: |
+          cat plan
