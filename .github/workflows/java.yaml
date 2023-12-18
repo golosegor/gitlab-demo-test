@@ -32,4 +32,4 @@ jobs:
         run: java HelloWorldApp.java
       - name: Deploy to ${{ matrix.environment }}
         run: |
-          echo deploying to $AWS_ACCOUNT_NAME
+          echo deploying to ${{ env.AWS_ACCOUNT_NAME }}
