@@ -1,0 +1,29 @@
+name: JAVA
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - id: set-matrix
+        run: echo "matrix={\"my_environment\":[\"dev\", \"qa\", \"prod\"]}" >> $GITHUB_OUTPUT
+
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{ fromJSON(needs.job1.outputs.matrix) }}
+    environment: matrix.my_environment
+    steps:
+      - name: Deploy to ${{ matrix.my_environment }}
+        run: |
+          echo deploying to ${{ vars.AWS_ACCOUNT_NAME }}
