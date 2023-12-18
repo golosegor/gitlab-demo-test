@@ -16,6 +16,9 @@ jobs:
     environment: ${{ matrix.my_environment }}
     runs-on: ubuntu-latest
     steps:
+      - name: Dump GitHub context
+        run: |
+          echo "GitHub context: $GITHUB_CONTEXT"
 #      - name: Hello world action step
 #        id: hello
 #        uses: actions/hello-world-docker-action@v2
