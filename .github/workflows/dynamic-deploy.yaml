@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix: ${{ fromJSON(needs.job1.outputs.matrix) }}
-    environment: matrix.my_environment
+    environment: ${{ matrix.my_environment }}
     steps:
       - name: Deploy to ${{ matrix.my_environment }}
         run: |
