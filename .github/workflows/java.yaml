@@ -12,7 +12,7 @@ jobs:
   build:
     strategy:
       matrix:
-        environments: [ "dev", "qa", "prod" ]
+        environment: [ "dev", "qa", "prod" ]
     runs-on: ubuntu-latest
     steps:
       - name: Hello world action step
@@ -30,6 +30,6 @@ jobs:
           check-latest: true
       - name: run java step lol
         run: java HelloWorldApp.java
-      - name: Deploy to ${{ matrix.environments }}
+      - name: Deploy to ${{ matrix.environment }}
         run: |
           echo deploying to $AWS_ACCOUNT_NAME
