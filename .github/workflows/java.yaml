@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         my_environment: [ "dev", "qa", "prod" ]
-    environment: "dev"
+    environment: ${{ matrix.my_environment }}
     runs-on: ubuntu-latest
     steps:
 #      - name: Hello world action step
