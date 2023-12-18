@@ -24,6 +24,6 @@ jobs:
       matrix: ${{ fromJSON(needs.job1.outputs.matrix) }}
     environment: ${{ matrix.my_environment }}
     steps:
-      - name: Deploy to ${{ matrix.my_environment }}
+      - name: Deploy to ${{ matrix.my_environment }} OMGYOOOO
         run: |
           echo deploying to ${{ vars.AWS_ACCOUNT_NAME }}
