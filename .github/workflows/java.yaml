@@ -27,3 +27,6 @@ jobs:
           check-latest: true
       - name: run java step lol
         run: java HelloWorldApp.java
+      - name: Deploy to ${{ matrix.environment }}
+        run: |
+          echo deploying to $AWS_ACCOUNT_NAME
